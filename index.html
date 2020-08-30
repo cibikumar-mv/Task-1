@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>TODO</title>
+  </head>
+  <style >
+
+    @import url('https://fonts.googleapis.com/css2?family=Fredoka+One&family=Oswald:wght@500&family=Sigmar+One&display=swap');
+
+    body
+    {
+      background-image: url("images/bg_img2.png");
+      background-repeat: no-repeat;
+      background-size: cover;
+    }
+
+    table
+    {
+      margin-left: auto;
+      margin-right: auto;
+
+    }
+
+    tr
+    {
+      background-color: #8d93ab;
+      font-family: 'Fredoka One', cursive;
+    }
+
+    th
+    {
+      background-color: #32e0c4;
+      color: #222831;
+    }
+    h1
+    {
+      color: #32e0c4;
+      font-family: 'Sigmar One', cursive;
+      font-size: 35px;
+    }
+
+    th,
+    td
+    {
+      text-align: left;
+      padding: 0.5em 1em;
+    }
+
+    label
+    {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+    }
+    p{
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+    }
+
+    .sub
+    {
+      font-family: 'Oswald', sans-serif;
+      font-size: 20px;
+    }
+
+  </style>
+
+  <body>
+    <br>
+    <form id="form" >
+      <fieldset>
+        <legend><h1>Student details</h1></legend>
+        <label for="name">Name:</label><br>
+        <input type="text" name="name" id="name"><br><br>
+        <label for="roll">Roll No.:</label><br>
+        <input type="text" name="roll" id="roll"><br><br>
+        <label for="roll">Department:</label><br>
+        <input type="text" name="department" id="dept"><br><br>
+        <label for="sec">Section:</label><br>
+        <select id="sec" name="Section">
+          <option value="A">A</option>
+          <option value="B">B</option>
+          <option value="C">C</option>
+          <option value="D">D</option>
+        </select><br>
+        <p>Year:</p>
+        <label for="yr-1">1</label>
+        <input type="radio" name="year" id="yr-1" value="1st year">
+        <label for="yr-2">2</label>
+        <input type="radio" name="year" id="yr-2" value="2nd year">
+        <label for="yr-3">3</label>
+        <input type="radio" name="year" id="yr-3" value="3rd year">
+        <label for="yr-4">4</label>
+        <input type="radio" name="year" id="yr-4" value="4th year">
+        <br><br>
+        <input type="button" value="Submit" class="sub" onclick="addRow()"><br><br>
+      </fieldset>
+    </form>
+<br><br><br><br><br><br>
+<table id="table">
+    <tr>
+        <th>Roll No.</th>
+        <th>Name</th>
+        <th>Department</th>
+        <th>Section</th>
+        <th>Year</th>
+        <th>Remove</th>
+
+    </tr>
+</table>
+  </body>
+  <script>
+
+  function addRow() {
+   "use strict";
+
+    var table = document.getElementById("table");
+
+    var row= document.createElement("tr");
+
+    var td1 = document.getElementById("roll").value;
+    var td2  = document.getElementById("name").value;
+    var td3  = document.getElementById("dept").value;
+    var td4  = document.getElementById("sec").value;
+    var radio = document.getElementsByName("year");
+
+    for(var i=0;i<radio.length;i++){
+      if(radio[i].checked){
+        var td5 = radio[i].value;
+      }
+    }
+
+    row.innerHTML = "<td>"+td1+"</td>"+"<td>"+td2+"</td>"+"<td>"+td3+"</td>"+"<td>"+td4+"</td>"+"<td>"+td5+"</td>"+"<td><button onclick='rmRow(event)'>X</button></td>";
+    document.getElementById('table').appendChild(row);
+    document.getElementById("form").reset();
+
+};
+function rmRow(r){
+  r.path[2].remove();
+}
+  </script>
+</html>
